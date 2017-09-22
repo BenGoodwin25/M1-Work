@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/home/user/GitHub/M1-Work/SAMP/TP1/MyApplication/app/build/intermediates/res/merged/debug/color-v11/abc_background_cache_hint_selector_material_dark.xml",
+        "source": "/home/user/.android/build-cache/902cd74f7979364c65957c5c0ee0a7ea4fa52144/output/res/color-v11/abc_background_cache_hint_selector_material_dark.xml"
+    },
+    {
+        "merged": "/home/user/GitHub/M1-Work/SAMP/TP1/MyApplication/app/build/intermediates/res/merged/debug/color-v11/abc_background_cache_hint_selector_material_light.xml",
+        "source": "/home/user/.android/build-cache/902cd74f7979364c65957c5c0ee0a7ea4fa52144/output/res/color-v11/abc_background_cache_hint_selector_material_light.xml"
+    }
+]

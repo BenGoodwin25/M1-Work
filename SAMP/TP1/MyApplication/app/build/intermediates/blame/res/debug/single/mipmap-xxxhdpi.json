@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/home/user/GitHub/M1-Work/SAMP/TP1/MyApplication/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi/ic_launcher.png",
+        "source": "/home/user/GitHub/M1-Work/SAMP/TP1/MyApplication/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/home/user/GitHub/M1-Work/SAMP/TP1/MyApplication/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi/ic_launcher_round.png",
+        "source": "/home/user/GitHub/M1-Work/SAMP/TP1/MyApplication/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png"
+    }
+]
