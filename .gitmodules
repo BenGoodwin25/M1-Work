@@ -1,0 +1,3 @@
+[submodule "GRAF/libGraf/libGraph"]
+	path = GRAF/libGraf/libGraph
+	url = git@github.com:BenGoodwin25/libGraph.git

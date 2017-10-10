@@ -195,8 +195,6 @@ public class CalcApp {
         etat = ETAT_0;
 
         setVue (cw) ;
-        //cw.setApp (this) ;
-
         miseAJourVue(operandeTexte);
     }
 
