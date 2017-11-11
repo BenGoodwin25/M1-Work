@@ -4,17 +4,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.user.tp2quizz.MainActivity">
+    tools:context="com.example.user.tp2quizz.Question">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">s
+        android:orientation="horizontal">
 
     </LinearLayout>
 
     <ListView
-        android:id="@+id/quiz_list"
+        android:id="@+id/question_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
     </ListView>

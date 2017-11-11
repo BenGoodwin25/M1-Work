@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">TP 2 Quizz</string>
     <string name="title_activity_single_edit">SingleEditActivity</string>
+    <string name="title_activity_question">Question</string>
 </resources>

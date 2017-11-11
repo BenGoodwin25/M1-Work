@@ -1,5 +1,7 @@
 package com.example.user.tp2quizz;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
@@ -29,28 +31,30 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.questions_items);
         setContentView(R.layout.activity_main);
+
 
         DB = new QuizzDatabase(this);
 
-        textV=(TextView)findViewById(R.id.textView1);
-        qApp=new QuizzApp(textV);
-        index=1;
-        indexMax=DB.getIndexMax();
-        qApp.newQuestion(DB.getQuestion(index));
-        index+=1;
+        //textV=(TextView)findViewById(R.id.textView1);
+        //qApp=new QuizzApp(textV);
+        //index=1;
+        //indexMax=DB.getIndexMax();
+        //qApp.newQuestion(DB.getQuestion(index));
+        //index+=1;
 
         DBhelper = new DatabaseHelper(this);
         db = DBhelper.getWritableDatabase();
 
         //TODO ADD BUTTON show answer
-        Cursor quiz = db.rawQuery("SELECT * FROM Quizz",null, null);
+        Cursor quiz = db.rawQuery("SELECT * FROM Quizz", null, null);
 
         if(!quiz.moveToFirst()){
             Log.i("DATABASE","Init BDD");
         } else {
             int nbQuizzs = quiz.getCount();
-            String[] mobileArray = new String[nbQuizzs];
+            final String[] mobileArray = new String[nbQuizzs];
             for (int i = 0; i < nbQuizzs; i++) {
                 mobileArray[i] = quiz.getString(1);
                 System.out.println(quiz.getString(1));
@@ -60,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
             ArrayAdapter adapter = new ArrayAdapter<String>(this,
                     R.layout.questions_items, mobileArray);
 
-            final ListView listView = (ListView) findViewById(R.id.mobile_list);
+            final ListView listView = (ListView) findViewById(R.id.quiz_list);
             listView.setAdapter(adapter);
 
             listView.setClickable(true);
@@ -68,6 +72,9 @@ public class MainActivity extends AppCompatActivity {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     // When clicked, show a toast with the TextView text or do whatever you need.
                     Toast.makeText(getApplicationContext(), ((TextView) view).getText(), Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(MainActivity.this, Question.class);
+                    i.putExtra("id",position);
+                    startActivity(i);
                 }
             });
         }
