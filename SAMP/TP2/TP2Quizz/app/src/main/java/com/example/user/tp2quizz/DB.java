@@ -8,17 +8,12 @@ import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-/*
- * Base de donnees
- */
+
 public class DB {
 	public static SQLiteDatabase db;
 	public static MaBase maBase;
 	public static final int version = 2;
-	
-	/*
-	 * Ouvre la base de donnees
-	 */
+
 	public static void open(Context context){
 		Log.e("DB", "open");
 		
@@ -26,10 +21,7 @@ public class DB {
 		db = maBase.getWritableDatabase();
 		db.execSQL("PRAGMA foreign_keys=ON;");	
 	}
-	
-	/*
-	 * Verifie si la base de donnees est deja ouverte
-	 */
+
 	public static boolean isOpen(){
 		if(maBase != null && db.isOpen()){
 			return true;
@@ -38,10 +30,7 @@ public class DB {
 			return false;
 		}
 	}
-	
-	/*
-	 * Ferme la base de donnees
-	 */
+
 	public static void close(){
 		Log.e("DB", "close");
 		if(db != null){
@@ -84,7 +73,7 @@ public class DB {
 	}
 	
 	/*
-	 * Entre un item dans la base de donn�es
+	 * Entre un item dans la base de donnees
 	 */
 	public static long insertItem(String channelId, String title, String description, long pubDate, String link){
 		Log.d("insertItem", "title = "+title+", pubDate : "+pubDate+", link : "+link);

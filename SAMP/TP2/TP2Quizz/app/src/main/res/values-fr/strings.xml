@@ -1,0 +1,33 @@
+<resources>
+
+    <string name="app_name">Micro-Projet 1</string>
+    <string name="liste_RSS">Liste des flux RSS :</string>
+    
+    <string name="add_rss">Ajouter un flux RSS</string>
+    <string name="delete_rss">Supprimer ce flux RSS</string>
+    <string name="delete_rss_sure">Êtes-vous sur de vouloir supprimer ce flux RSS ?</string>
+    <string name="update_rss">Mettre à jour ce flux RSS</string>
+    <string name="choix_adresse">Entrez une adresse</string>
+    
+	<string name="no">Quitter</string>
+	<string name="yes">Valider</string>
+	
+	<string name="download">Récupération du flux RSS en cours</string>
+	<string name="wait">Patientez...</string>
+	
+	<string name="title">Titre :</string>
+	<string name="link">Lien :</string>
+	<string name="description">Description :</string>
+	<string name="date">Date :</string>
+	<string name="click_here">Clickez ici</string>
+	
+	<string name="refresh_all">Tout mettre à jour</string>
+	<string name="connection_problem">Problème de connexion</string>
+	
+    <string name="add_lemonde">Ajouter Lemonde</string>
+    <string name="add_usgs">Ajouter USGS</string>
+    <string name="add_programmez">Ajoutez Programmez</string>
+    
+	<string name="success">Flux RSS téléchargé avec succès</string>
+
+</resources>

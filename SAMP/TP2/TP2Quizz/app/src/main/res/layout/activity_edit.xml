@@ -7,11 +7,26 @@
     tools:context="com.example.user.tp2quizz.EditActivity">
 
 
-    <Button
-        android:id="@+id/DownloadQuiz"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Download Quiz" />
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/refresh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Refresh" />
+
+        <Button
+            android:id="@+id/DownloadQuiz"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Download Quiz" />
+
+    </LinearLayout>
 
     <ListView
         android:id="@+id/mobile_list"

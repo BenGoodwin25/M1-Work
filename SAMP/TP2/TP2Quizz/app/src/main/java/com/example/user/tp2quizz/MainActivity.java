@@ -1,9 +1,15 @@
 package com.example.user.tp2quizz;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -11,7 +17,10 @@ public class MainActivity extends AppCompatActivity {
 
     QuizzApp qApp;
     TextView textV;
+
+    SQLiteDatabase db;
     QuizzDatabase DB;
+    DatabaseHelper DBhelper;
 
 
     int index;
@@ -31,9 +40,40 @@ public class MainActivity extends AppCompatActivity {
         qApp.newQuestion(DB.getQuestion(index));
         index+=1;
 
-        //TODO ADD BUTTON show answer
+        DBhelper = new DatabaseHelper(this);
+        db = DBhelper.getWritableDatabase();
 
-        Button b0=(Button)findViewById(R.id.button0);
+        //TODO ADD BUTTON show answer
+        Cursor quiz = db.rawQuery("SELECT * FROM Quizz",null, null);
+
+        if(!quiz.moveToFirst()){
+            Log.i("DATABASE","Init BDD");
+        } else {
+            int nbQuizzs = quiz.getCount();
+            String[] mobileArray = new String[nbQuizzs];
+            for (int i = 0; i < nbQuizzs; i++) {
+                mobileArray[i] = quiz.getString(1);
+                System.out.println(quiz.getString(1));
+                quiz.moveToNext();
+            }
+
+            ArrayAdapter adapter = new ArrayAdapter<String>(this,
+                    R.layout.questions_items, mobileArray);
+
+            final ListView listView = (ListView) findViewById(R.id.mobile_list);
+            listView.setAdapter(adapter);
+
+            listView.setClickable(true);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    // When clicked, show a toast with the TextView text or do whatever you need.
+                    Toast.makeText(getApplicationContext(), ((TextView) view).getText(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
+        //TODO Change all the answer button with a listView with action click
+        /*Button b0=(Button)findViewById(R.id.button0);
         b0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -83,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        */
     }
 }
 
