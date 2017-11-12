@@ -20,7 +20,10 @@
         </activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".EditActivity" />
-        <activity android:name=".Question"/>
+        <activity
+            android:name=".Question"
+            android:configChanges="orientation|screenSize"/>
+        <activity android:name=".ScoreActivity" />
     </application>
 
 </manifest>
