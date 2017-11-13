@@ -35,8 +35,7 @@ public class Question extends AppCompatActivity {
         Bundle b = getIntent().getExtras();
         int quizzId = (b.getInt("id") + 1);
         System.out.println(quizzId);
-        quiz = db.rawQuery("SELECT * FROM Question WHERE quizz = " + quizzId, null,
-                null);
+        quiz = db.rawQuery("SELECT * FROM Question WHERE quizz = " + quizzId, null, null);
 
         if(!quiz.moveToFirst()){
             Log.i("DATABASE","Init BDD");

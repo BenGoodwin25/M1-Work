@@ -38,10 +38,7 @@ public class DB {
 			maBase.close();
 		}
 	}
-	
-	/*
-	 * Entre une channel dans la base de donnees
-	 */
+
 	public static long insertChannel(String url, String title, String description, long lastBuildDate, String link, byte[] image){
 		Log.d("insertChannel", "url = "+url+", title = "+title+", lastBuildDate = "+lastBuildDate+", link = "+link);
 		
@@ -71,10 +68,7 @@ public class DB {
 		}
 
 	}
-	
-	/*
-	 * Entre un item dans la base de donnees
-	 */
+
 	public static long insertItem(String channelId, String title, String description, long pubDate, String link){
 		Log.d("insertItem", "title = "+title+", pubDate : "+pubDate+", link : "+link);
 		ContentValues values = new ContentValues();
@@ -86,10 +80,7 @@ public class DB {
 		
 		return db.insert("item", null, values);
 	}
-	
-	/*
-	 * Recupere la date de date du dernier item
-	 */
+
 	public static long getMaxDate(String channelId){
 		Cursor mCurs = db.rawQuery("SELECT MAX(pubDate) FROM item WHERE channelId = ? ", new String[]{channelId});
 		               
@@ -101,10 +92,7 @@ public class DB {
 		
 		return retour;
 	}
-	
-	/*
-	 * Recupere les channels
-	 */
+
 	public static Cursor getChannels(){
 		return db.rawQuery(
 				"SELECT id AS id, title AS titre FROM channel", null);
@@ -126,10 +114,7 @@ public class DB {
 		
 		return retour;		
 	}
-	
-	/*
-	 * Retourne le nombre d'items d'une channel
-	 */
+
 	public static int getItemsNumber(String channelId){
 		Cursor mCurs = db.rawQuery("SELECT COUNT(*) FROM item WHERE channelId = ?", new String[]{channelId});
 		
@@ -141,24 +126,15 @@ public class DB {
 		
 		return retour;
 	}
-	
-	/*
-	 * Recupere les items d'une channel
-	 */
+
 	public static Cursor getItems(String channelId){
 		return db.rawQuery("SELECT * FROM item WHERE channelId = ?", new String[]{channelId});
 	}
-	
-	/*
-	 * Recupere une channel
-	 */
+
 	public static Cursor getChannel(String channelId){
 		return db.rawQuery("SELECT * FROM channel WHERE id = ?", new String[]{channelId});
 	}
-	
-	/*
-	 * Supprime une channel
-	 */
+
 	public static int deleteChannel(String channelId){
 		int retour =  db.delete("channel", "id = ?", new String[]{channelId});
 		return retour;
@@ -191,17 +167,13 @@ public class DB {
 
 		@Override
 		public void onCreate(SQLiteDatabase db) {
-			// Construis la table channel
 			db.execSQL(CREATE_CHANNEL);
-			// Construis la table item
 			db.execSQL(CREATE_ITEM);
 		}
 
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-			// Supprime la table channel
 			db.execSQL("DROP TABLE channel");
-			// Supprime la table item
 			db.execSQL("DROP TABLE item");
 			
 			onCreate(db);

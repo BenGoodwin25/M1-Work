@@ -10,21 +10,28 @@
         android:id="@+id/linearLayout0"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
 
         <Button
             android:id="@+id/button0"
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:text="Play" />
+            android:text="Play"
+            android:textSize="36sp"
+            android:textStyle="bold" />
 s
+
         <Button
             android:id="@+id/button1"
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:text="Edit" />
+            android:text="Edit"
+            android:textSize="36sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
 </RelativeLayout>

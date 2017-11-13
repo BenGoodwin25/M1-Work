@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.Toast;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -46,21 +45,19 @@ public class DownloadTask extends AsyncTask<Context, Void, Void>{
             SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
             long idProposition = 0;
-            for (int i = 0; i < quizzs.getLength(); ++i) { //pour chaque quizz
+            for (int i = 0; i < quizzs.getLength(); ++i) {
                 Element quizz = (Element) quizzs.item(i);
                 String type = quizz.getAttribute("type");
                 type = type.replaceAll("\\A\\s+","");
                 type = type.replaceAll("\\s+\\Z","");
                 Cursor testQuizz = db.rawQuery("SELECT * FROM Quizz WHERE type = \"" + type + "\"",null,null);
-                //Log.i("TEST", "TESTT");
                 if(testQuizz.getCount() == 0) {
                     Log.i("TEST STRING", "'" + type + "'");
                     ContentValues quizzType = new ContentValues();
-                    //quizzType.put(DatabaseContract.TableQuizz.COLUMN_NAME_ID, idQuizz);
                     quizzType.put(DatabaseContract.TableQuizz.COLUMN_NAME_TYPE, type);
                     long idQuizz = db.insert(DatabaseContract.TableQuizz.TABLE_NAME, null, quizzType);
                     NodeList questions = quizz.getElementsByTagName("Question");
-                    for (int j = 0; j < questions.getLength(); ++j) { //pour chaque question
+                    for (int j = 0; j < questions.getLength(); ++j) {
                         Element question = (Element) questions.item(j);
                         String text = question.getFirstChild().getTextContent();
                         text = text.replaceAll("\\A\\s+", "");
@@ -70,12 +67,12 @@ public class DownloadTask extends AsyncTask<Context, Void, Void>{
                         questionText.put(DatabaseContract.TableQuestion.COLUMN_NAME_QUIZZ, idQuizz);
                         NodeList propositionss = question.getElementsByTagName("Propositions");
                         Element propositions_elmt = (Element) propositionss.item(0);
-                        Element nombre = (Element) propositions_elmt.getElementsByTagName("Nombre").item(0); //nombre de propositions
+                        Element nombre = (Element) propositions_elmt.getElementsByTagName("Nombre").item(0);
                         Element reponse = (Element) question.getElementsByTagName("Reponse").item(0);
-                        int reponseTrue = Integer.parseInt(reponse.getAttribute("valeur")); // numéro de la réponse juste
+                        int reponseTrue = Integer.parseInt(reponse.getAttribute("valeur"));
                         NodeList propositions = propositions_elmt.getElementsByTagName("Proposition");
-                        for (int l = 0; l < propositions.getLength(); ++l) { //pour chaque proposition
-                            Element proposition = (Element) propositions.item(l); //proposition texte
+                        for (int l = 0; l < propositions.getLength(); ++l) {
+                            Element proposition = (Element) propositions.item(l);
                             String propText = proposition.getTextContent();
                             propText = propText.replaceAll("\\A\\s+", "");
                             propText = propText.replaceAll("\\s+\\Z", "");

@@ -3,4 +3,6 @@
     <string name="title_activity_single_edit">SingleEditActivity</string>
     <string name="title_activity_question">Question</string>
     <string name="title_activity_score">ScoreActivity</string>
+    <string name="title_activity_edit_question">EditQuestionActivity</string>
+    <string name="title_activity_edit_single_question">EditSingleQuestionActivity</string>
 </resources>

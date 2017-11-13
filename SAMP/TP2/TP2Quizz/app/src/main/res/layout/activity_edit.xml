@@ -4,34 +4,44 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:weightSum="10"
     tools:context="com.example.user.tp2quizz.EditActivity">
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="0px"
+        android:orientation="horizontal"
+        android:layout_weight="1">
 
         <Button
             android:id="@+id/refresh"
-            android:layout_width="match_parent"
+            android:layout_width="0px"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Refresh" />
 
         <Button
             android:id="@+id/DownloadQuiz"
-            android:layout_width="match_parent"
+            android:layout_width="0px"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Download Quiz" />
 
     </LinearLayout>
 
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="1"
+        android:text="New Category" />
+
     <ListView
         android:id="@+id/mobile_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="0px"
+        android:layout_weight="8">
     </ListView>
 
 </LinearLayout>
