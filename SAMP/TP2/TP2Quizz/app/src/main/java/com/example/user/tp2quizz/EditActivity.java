@@ -50,6 +50,7 @@ public class EditActivity extends AppCompatActivity {
             }
         });
 
+
         Cursor quiz = db.rawQuery("SELECT * FROM Quizz", null, null);
 
         if(!quiz.moveToFirst()){

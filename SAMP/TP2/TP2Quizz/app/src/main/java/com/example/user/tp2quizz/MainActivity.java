@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
         DBhelper = new DatabaseHelper(this);
         db = DBhelper.getWritableDatabase();
 
-        //TODO ADD BUTTON show answer
         Cursor quiz = db.rawQuery("SELECT * FROM Quizz", null, null);
 
         if(!quiz.moveToFirst()){
