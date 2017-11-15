@@ -11,7 +11,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class Question extends AppCompatActivity {
 
@@ -22,6 +21,9 @@ public class Question extends AppCompatActivity {
     Cursor nbProposition;
 
     int score;
+    int maxscore;
+
+    boolean finished=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,14 +43,25 @@ public class Question extends AppCompatActivity {
             Log.i("DATABASE","Init BDD");
         } else {
             score=0;
+            maxscore=0;
             question();
+        }
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        if(finished){
+            finish();
         }
     }
 
     public void question(){
         if(quiz.isAfterLast()){
+            finished=true;
             Intent i = new Intent(Question.this, ScoreActivity.class);
             i.putExtra("score", score);
+            i.putExtra("maxScore", maxscore);
             startActivity(i);
         }
         else {
@@ -87,10 +100,12 @@ public class Question extends AppCompatActivity {
                     // When clicked, show a toast with the TextView text or do whatever you need.
                     if(position==answer){
                         score++;
+                        maxscore++;
                         quiz.moveToNext();
                         question();
                     } else {
                         quiz.moveToNext();
+                        maxscore++;
                         question();
                     }
 

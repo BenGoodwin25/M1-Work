@@ -12,8 +12,8 @@ public class ScoreActivity extends AppCompatActivity {
         setContentView(R.layout.content_score);
         Bundle b = getIntent().getExtras();
         int score = (b.getInt("score"));
+        int maxScore = (b.getInt("maxScore"));
         TextView TView=(TextView)findViewById(R.id.textView);
-        TView.setText("Final Score is : " + score);
+        TView.setText("Final Score is : " + score + "/"+ maxScore);
     }
-
 }

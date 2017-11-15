@@ -1,22 +1,17 @@
 package com.example.user.tp2quizz;
 
-import android.content.Intent;
-import android.content.pm.ActivityInfo;
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static com.example.user.tp2quizz.R.id.spinner;
 
@@ -38,7 +33,7 @@ public class EditSingleQuestionActivity extends AppCompatActivity {
         db = DBhelper.getWritableDatabase();
 
         Bundle b = getIntent().getExtras();
-        int questionId = (b.getInt("id"));
+        final int questionId = (b.getInt("id"));
         System.out.println(questionId);
         quiz = db.rawQuery("SELECT * FROM Question WHERE id = " + questionId, null, null);
 
@@ -48,12 +43,13 @@ public class EditSingleQuestionActivity extends AppCompatActivity {
             String[] tmpArray = new String[10];//MAX Propositions possible
             int[] idArray = new int[10];
 
-            TextView TView=(TextView)findViewById(R.id.editText);
+            final TextView TView=(TextView)findViewById(R.id.editText);
             TView.setText("" + quiz.getString(1));
 
             nbProposition = db.rawQuery("SELECT * FROM Proposition WHERE Question =" +
                     questionId, null, null);
             nbProposition.moveToFirst();
+            final int minAnswer=nbProposition.getInt(0);
             final int answer=quiz.getInt(2)-nbProposition.getInt(0);
             System.out.println("answer : " + answer);
             int index = 0;
@@ -69,7 +65,7 @@ public class EditSingleQuestionActivity extends AppCompatActivity {
             final ListView listView = (ListView) findViewById(R.id.mobile_list);
 
             //get the spinner from the xml.
-            Spinner dropdown = (Spinner)findViewById(spinner);
+            final Spinner dropdown = (Spinner)findViewById(spinner);
 
             //create a list of items for the spinner.
             String[] items = new String[index];
@@ -85,20 +81,31 @@ public class EditSingleQuestionActivity extends AppCompatActivity {
                 items[i]=mobileArray[i];
             }
 
-            ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.questions_edit,
+            final ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.questions_items,
                     mobileArray);
 
             listView.setAdapter(adapter);
             listView.setClickable(true);
 
-            dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-                    System.out.println(pos);
-                }
-                public void onNothingSelected(AdapterView<?> parent) {
+            Button b1=(Button)findViewById(R.id.updateQuestion);
+            b1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ContentValues questionsChanges = new ContentValues();
+                    questionsChanges.put(DatabaseContract.TableQuestion.COLUMN_NAME_TEXT,TView.getText().toString());
+                    questionsChanges.put(DatabaseContract.TableQuestion.COLUMN_NAME_REPONSE,minAnswer+dropdown.getSelectedItemPosition());
+                    db.update(DatabaseContract.TableQuestion.TABLE_NAME, questionsChanges, DatabaseContract.TableQuestion.COLUMN_NAME_ID + "=" + questionId, null);
+
+                    /*      Doesn't work ...
+                    for(int i=0;i < adapter.getCount();i++){
+                        ContentValues propositionsChanges = new ContentValues();
+                        propositionsChanges.put(DatabaseContract.TableProposition.COLUMN_NAME_TEXT,adapter.getItem(i).toString());
+                        String id = ""+(i+minAnswer);
+                        db.update(DatabaseContract.TableProposition.TABLE_NAME,propositionsChanges,DatabaseContract.TableProposition.COLUMN_NAME_ID + "=" + id, null);
+                    }
+                    */
                 }
             });
         }
     }
-
 }

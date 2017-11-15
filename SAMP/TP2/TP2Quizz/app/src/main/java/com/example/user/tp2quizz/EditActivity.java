@@ -12,17 +12,14 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class EditActivity extends AppCompatActivity {
 
     SQLiteDatabase db;
-    QuizzDatabase DB;
     DatabaseHelper DBhelper;
 
 
     int index;
-    int indexMax;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,9 +28,6 @@ public class EditActivity extends AppCompatActivity {
         setContentView(R.layout.questions_items);
         setContentView(R.layout.activity_edit);
         index = 1;
-
-        DB = new QuizzDatabase(this);
-        indexMax=DB.getIndexMax();
 
         DBhelper = new DatabaseHelper(this);
         db = DBhelper.getWritableDatabase();

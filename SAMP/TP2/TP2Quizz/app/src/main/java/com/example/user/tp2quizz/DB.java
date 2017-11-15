@@ -13,7 +13,7 @@ public class DB {
 	public static SQLiteDatabase db;
 	public static MaBase maBase;
 	public static final int version = 2;
-
+	/*
 	public static void open(Context context){
 		Log.e("DB", "open");
 		
@@ -138,7 +138,7 @@ public class DB {
 	public static int deleteChannel(String channelId){
 		int retour =  db.delete("channel", "id = ?", new String[]{channelId});
 		return retour;
-	}
+	}*/
 	
 	public static class MaBase extends SQLiteOpenHelper {
 		
