@@ -1,0 +1,13 @@
+all: TP1b.out
+
+TP1b:  TP1b.o
+	avr-gcc -mmcu=atmega32u4 -Os -Wall -o TP1b.out TP1b.o
+
+TP1b.o: TP1b.c
+	avr-gcc -mmcu=atmega32u4 -Os -Wall -c TP1b.c
+
+clean:
+	rm *.o TP1b.out
+
+flash: TP1b.out
+	avrdude -c avr109 -b57600 -D -p atmega32u4 -P /dev/ttyACM0 -e -U flash:w:TP1b.out
