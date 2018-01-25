@@ -23,6 +23,8 @@
 
 #include <unistd.h>
 
+#include "fonctionUDP.h"
+
 /* taille du buffeur de reception */
 #define TAIL_BUF 100
 
@@ -43,34 +45,8 @@ int main(int argc, char** argv) {
       printf("usage : %s port\n", argv[0]);
       return -1;
     }
-
-   /* creation de la socket, protocole UDP */
-    sock = socket(AF_INET, SOCK_DGRAM, 0);
-    if (sock < 0) {
-	perror("(recepteur) erreur de socket");
-	return -2;
-    }
-
-    /* 
-     * initialisation de l'adresse de la socket 
-     */
-    adrRecep.sin_family = AF_INET;
-    adrRecep.sin_port = htons(atoi(argv[1]));
-    adrRecep.sin_addr.s_addr = INADDR_ANY;
-	// INADDR_ANY : 0.0.0.0 (IPv4) donc htonl inutile ici, car pas d'effet
-    bzero(adrRecep.sin_zero, 8);
-
-    sizeAddr = sizeof(struct sockaddr_in);
-
-    /* 
-     * attribution de l'adresse a la socket
-     */
-    err = bind(sock, (struct sockaddr *)&adrRecep, sizeAddr);
-    if (err < 0) {
-	perror("(recepteur) erreur sur le bind");
-	close(sock);
-	return -3;
-    }
+  
+    sock = socketUDP(atoi(argv[1]));
 
     /*
      * reception et affichage du message en provenance de l'emetteur

@@ -15,10 +15,10 @@
 
 #include <unistd.h>
 
-int socketUDP(ushort nPort);
+int socketUDP(int nPort);
 
-int adresseUDP(char* nomMachine, ushort nPort, struct sockaddrin* addr);
+int adresseUDP(char* nomMachine, ushort nPort, struct sockaddr_in* addr);
 
-struct sockaddrin* initAddr(char* nomMachine, ushort nPort);
+struct sockaddr_in* initAddr(char* nomMachine, ushort nPort);
 
 #endif// FONCTIONUDP_H

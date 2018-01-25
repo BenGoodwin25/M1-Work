@@ -16,7 +16,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <sys/types.h>
 
 /* inclusions socket */
 #include <sys/socket.h>
@@ -25,22 +24,18 @@
 
 #include "fonctionUDP.h"
 
-#include <unistd.h>
-
 #define TAIL_BUF 100
 #define T_NOM 20
 
 int main(int argc, char** argv) {
   int sock,               /* descripteur de la socket locale */
       port,               /* variables de lecture */
-      sizeAddr, 	  /* taille de l'adresse d'une socket */
       err;                /* code d'erreur */
   char chaine[TAIL_BUF];
   
   char ipMachDest[T_NOM];   /* ip de la machine dest */
   
-  struct sockaddr_in adrDest;     /* adresse de la socket distante */
-  struct sockaddr_in adrLocal;	  /* adresse de la socket locale */
+  struct sockaddr_in* adrDest;     /* adresse de la socket distante */
 
   
   if (argc != 2) {
@@ -48,59 +43,18 @@ int main(int argc, char** argv) {
     return -1;
   }
 
-  sock = socketUDP(argv[1]);
+  port = atoi(argv[1]);
+  sock = socketUDP(port);
 
-  /*
-
-  /* creation de la socket, protocole UDP
-  sock = socket(AF_INET, SOCK_DGRAM, 0);
-  if (sock < 0) {
-    perror("(emetteur) erreur de socket");
-    return -2;
-  }
-
-
-
-  /*
-   * initialisation de l'adresse de la socket 
-   *
-  adrLocal.sin_family = AF_INET;
-  adrLocal.sin_port = htons(atoi(argv[1]));
-  adrLocal.sin_addr.s_addr = INADDR_ANY;
-  	// INADDR_ANY : 0.0.0.0 (IPv4) donc htonl inutile ici, car pas d'effet
-  bzero(adrLocal.sin_zero, 8);
- 
-  sizeAddr = sizeof(struct sockaddr_in);
- 
-  /* 
-   * attribution de l'adresse a la socket
-   *
-  err = bind(sock, (struct sockaddr *)&adrLocal, sizeAddr);
-  if (err < 0) {
-    perror("(emetteur) erreur sur le bind");
-    return -3;
-  }
-  */
-
-  /*
-   * saisie et initialisation de l'adresse du destinataire
-   */
+  // saisie et initialisation de l'adresse du destinataire
   printf("(emetteur) donner la machine dest (@ip en notation decimale a point) : ");
   scanf("%s", ipMachDest);
   printf("(emetteur) donner le port dest : ");
   scanf("%d", &port);
-  printf("(emetteur) initaddr pour %s, %d\n",  ipMachDest, port);
-  
-  /* initialisation de l'adresse de la socket */
+  printf("(emetteur) initaddr pour %s, %d\n", ipMachDest, port);
 
-  adrDest.sin_family = AF_INET;
-  err = inet_aton(ipMachDest, &adrDest.sin_addr);
-  if (err == 0) { 
-    perror("(emetteur) erreur obtention IP recepteur");
-    return -4;
-  }
-  adrDest.sin_port = htons(port);
-  bzero(adrDest.sin_zero, 8);
+  err = adresseUDP(ipMachDest,port,&adrDest);
+  //adrDest = initAddr(ipMachDest,port);
   
   /* 
    * saisie et envoi de la chaine 
