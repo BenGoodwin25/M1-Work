@@ -1,0 +1,11 @@
+Base de connaisances : Regroupe l'ensemble des données du système
+Moteur d'inférence : Le mécanisme permet de raisonner et de faire évoluer le système 
+Base de faits : Les nouvelles information arrivent dans le système.
+Système de consultation : IHM, permet d'utiliser les connaisances
+Modèle d'explication : Il permet de transcrire le raisonnement qui a conduit le système à la solution proposée
+Module d'acquisition des connaisances :  ensemble des moyens de communications avec le monde extérieur
+Phase de sélection: Choisi un sous ensemble de la base de faits qui mérite "le plus d'attention"
+Phase de filtrage : elle permet au Moteur d'inférence de comparer la partie prémisse des régles selectionnées avec les faits de la base pour determiner l'ensemble des régles applicables.
+Phase de résolution de conflits : elle permet de choisir la régle qui va être appliqué effectivement.
+Phase d'execution : elle consiste à appliquer la régle choisie précédamment
+

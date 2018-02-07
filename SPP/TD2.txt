@@ -1,0 +1,31 @@
+
+Exercice 2
+
+  6)
+    N = 10      R = 3
+    N = 16      R = 4
+    N = 35      R = 5
+    N = 37      R = 6
+
+  7) Ça calcule la racine carré
+
+  8) Contrat :
+    Donnée N entier (>= 0)
+    Resultat R entier
+    Precondition N >= 0
+    PostCondition N >= R² && N < (R+1)²
+
+Exercice 3
+
+I def
+  V i. V j((i € 1..k && j € 1..k && i < j) ==> T[i] <= T[j])
+      /* T 1..k trié par ordre croissant */
+  && V i((i € k + 1..n && k != 0) ==> T[i] >= T[k])
+      /* Tous les elements de k+1 à n sont plus grands ou égaux à T[k] */
+
+
+  4) I && k == n-1 ==> Post Condition
+
+Exercice 4 Procedure Partition du QuickSort
+
+

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="MATH_SERV"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/user/GitHub/M1-Work/SCS/MATH-SERV/build"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/user/GitHub/M1-Work/SCS/MATH-SERV/build/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/user/GitHub/M1-Work/SCS/MATH-SERV/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/user/GitHub/M1-Work/SCS/MATH-SERV/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/user/GitHub/M1-Work/SCS/MATH-SERV/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/user/GitHub/M1-Work/SCS/MATH-SERV/build"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/user/GitHub/M1-Work/SCS/MATH-SERV/build/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/user/GitHub/M1-Work/SCS/MATH-SERV/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/user/GitHub/M1-Work/SCS/MATH-SERV/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/user/GitHub/M1-Work/SCS/MATH-SERV/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/user/GitHub/M1-Work/SCS/MATH-SERV/build"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/user/GitHub/M1-Work/SCS/MATH-SERV/build/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/user/GitHub/M1-Work/SCS/MATH-SERV/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/user/GitHub/M1-Work/SCS/MATH-SERV/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/user/GitHub/M1-Work/SCS/MATH-SERV/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="MATH_CLIENT">
+				<Option output="/home/user/GitHub/M1-Work/SCS/MATH-SERV/build/MATH_CLIENT" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/user/GitHub/M1-Work/SCS/MATH-SERV/build"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.2.1/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.2.1/include-fixed"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/user/GitHub/M1-Work/SCS/MATH-SERV/build/Makefile&quot;  VERBOSE=1 MATH_CLIENT"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/user/GitHub/M1-Work/SCS/MATH-SERV/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/user/GitHub/M1-Work/SCS/MATH-SERV/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/user/GitHub/M1-Work/SCS/MATH-SERV/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="MATH_CLIENT/fast">
+				<Option output="/home/user/GitHub/M1-Work/SCS/MATH-SERV/build/MATH_CLIENT" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/user/GitHub/M1-Work/SCS/MATH-SERV/build"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.2.1/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.2.1/include-fixed"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/user/GitHub/M1-Work/SCS/MATH-SERV/build/Makefile&quot;  VERBOSE=1 MATH_CLIENT/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/user/GitHub/M1-Work/SCS/MATH-SERV/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/user/GitHub/M1-Work/SCS/MATH-SERV/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/user/GitHub/M1-Work/SCS/MATH-SERV/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="MATH_SERV">
+				<Option output="/home/user/GitHub/M1-Work/SCS/MATH-SERV/build/MATH_SERV" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/user/GitHub/M1-Work/SCS/MATH-SERV/build"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.2.1/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.2.1/include-fixed"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/user/GitHub/M1-Work/SCS/MATH-SERV/build/Makefile&quot;  VERBOSE=1 MATH_SERV"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/user/GitHub/M1-Work/SCS/MATH-SERV/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/user/GitHub/M1-Work/SCS/MATH-SERV/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/user/GitHub/M1-Work/SCS/MATH-SERV/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="MATH_SERV/fast">
+				<Option output="/home/user/GitHub/M1-Work/SCS/MATH-SERV/build/MATH_SERV" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/user/GitHub/M1-Work/SCS/MATH-SERV/build"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.2.1/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.2.1/include-fixed"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/user/GitHub/M1-Work/SCS/MATH-SERV/build/Makefile&quot;  VERBOSE=1 MATH_SERV/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/user/GitHub/M1-Work/SCS/MATH-SERV/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/user/GitHub/M1-Work/SCS/MATH-SERV/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/user/GitHub/M1-Work/SCS/MATH-SERV/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/user/GitHub/M1-Work/SCS/MATH-SERV/client.c">
+			<Option target="MATH_CLIENT"/>
+		</Unit>
+		<Unit filename="/home/user/GitHub/M1-Work/SCS/MATH-SERV/client.h">
+			<Option target="MATH_CLIENT"/>
+		</Unit>
+		<Unit filename="/home/user/GitHub/M1-Work/SCS/MATH-SERV/protocol.h">
+			<Option target="MATH_CLIENT"/>
+			<Option target="MATH_SERV"/>
+		</Unit>
+		<Unit filename="/home/user/GitHub/M1-Work/SCS/MATH-SERV/server.c">
+			<Option target="MATH_SERV"/>
+		</Unit>
+		<Unit filename="/home/user/GitHub/M1-Work/SCS/MATH-SERV/server.h">
+			<Option target="MATH_SERV"/>
+		</Unit>
+		<Unit filename="/home/user/GitHub/M1-Work/SCS/lib/fonctionTCP.o">
+			<Option target="MATH_CLIENT"/>
+			<Option target="MATH_SERV"/>
+		</Unit>
+		<Unit filename="/home/user/GitHub/M1-Work/SCS/MATH-SERV/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

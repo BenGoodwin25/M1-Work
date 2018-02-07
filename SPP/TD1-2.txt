@@ -1,0 +1,30 @@
+Contrats en 4 parties : Données, Résultats, Precondition, Post Condition
+
+Exemple de la dichotomie :
+
+Données : entier n, entier x, tableau t:tableau[1..n] d'entier
+    /* n est le nombre d'éléement de t */
+    /* x est la valeur cherchée dans t */
+
+Resultat : entier pos /* compris entre 0 et n */
+    /* pos est la condition de x dans t */
+
+pre-condition : /* t est trié par ordre croissant */
+
+post-condition :
+    Contrat 1 /* si x \€(n'est pas dans) t alors pos=0 sinon pos tel que t[pos]=X */
+
+x.((x \€ t ==> pos == 0) && (x € t ==> t[pos] == x))
+    OU
+(V i.(i € 1..n ==> t[i] != x) ==> pos == 0) && ( E(il existe)j.(j € 1..n && t[j] == x) ==> t[pos] == x)
+
+    Contrat 2 /* pos est la position de l'occurence la plus à droite de t parmi celles qui sont <= à x
+
+V(pour tout) i,j.((1 <= i <= m-1 && i < j <= m) ==> t[i] <= t[j])
+    OU
+V i,j.((i <= i < j <= n) ==> t[i] <= t[j])
+    OU
+V i,j.(i € 1..n && j € 1..n && i < j ==> t[i] <= t[j])
+
+V i((1 <= i && i <= pos) ==> t[i] <= x)
+&& (V j(j > pos && j <= n) ==> t[j] > x)

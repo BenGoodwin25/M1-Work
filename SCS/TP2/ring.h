@@ -1,6 +1,7 @@
 #ifndef RING_H
 #define RING_H
 
+//TODO do a lib for fonctionUDP
 #include "../miniTCP/fonctionTCP.h"
 
 #include <stdbool.h>

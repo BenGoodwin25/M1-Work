@@ -1,0 +1,1 @@
+/usr/bin/cc -g   CMakeFiles/MATH_CLIENT.dir/client.c.o /home/user/GitHub/M1-Work/SCS/lib/fonctionTCP.o  -o MATH_CLIENT 

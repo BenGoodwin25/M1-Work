@@ -1,0 +1,4 @@
+/home/user/GitHub/M1-Work/SCS/MATH-SERV/build/CMakeFiles/rebuild_cache.dir
+/home/user/GitHub/M1-Work/SCS/MATH-SERV/build/CMakeFiles/edit_cache.dir
+/home/user/GitHub/M1-Work/SCS/MATH-SERV/build/CMakeFiles/MATH_CLIENT.dir
+/home/user/GitHub/M1-Work/SCS/MATH-SERV/build/CMakeFiles/MATH_SERV.dir
