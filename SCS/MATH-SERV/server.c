@@ -36,22 +36,26 @@ int main(int argc, char* argv[]) {
   printf("this is a math server the network port is : %d\n", localPort);
 
 
-  //SockConn
-  sockConx = socketServeur(localPort);
 
-  //accept new client
-  sizeAddr = sizeof(struct sockaddr_in);
-  sockTransServer = accept(sockConx, (struct sockaddr *) &addClient, (socklen_t *) &sizeAddr);
-  if (sockTransServer < 0) {
-    perror("(serveurTCP) erreur sur accept");
-    return -5;
-  }
-  printf("ServTransServ : %d\n", sockTransServer);
 
   // Request loop for one client
   err = 1;
   switch(mode){
     case 0:
+      //Init
+      //SockConn
+      sockConx = socketServeur(localPort);
+
+      //accept new client
+      sizeAddr = sizeof(struct sockaddr_in);
+      sockTransServer = accept(sockConx, (struct sockaddr *) &addClient, (socklen_t *) &sizeAddr);
+      if (sockTransServer < 0) {
+        perror("(serveurTCP) erreur sur accept");
+        return -5;
+      }
+      printf("ServTransServ : %d\n", sockTransServer);
+
+      //Run
       while(err >= 0) {
         err = oneClientLoop(sockTransServer, req);
         shutdown(sockTransServer,SHUT_RDWR);
@@ -64,15 +68,23 @@ int main(int argc, char* argv[]) {
         printf("Connecting client\n");
       }
     break;
+
     case 1:
-      err = multiClientIterativeLoop(sockTransServer, req); //Multiplexing
+      //SockConn
+      sockConx = socketServeur(localPort);
+
+
+      err = multiClientIterativeLoop(addClient, req); //Multiplexing
     break;
+
     /*case 2:
       err = multiClientParallelLoop(sockTransServer, req); //Fork
     break;
+
     case 3:
       err = multiClientParallelLoopPool(sockTransServer, req); //ForkPool
     break;*/
+
     default:
       assert(true);
   }
@@ -86,9 +98,6 @@ int main(int argc, char* argv[]) {
 
   //return err;
 }
-
-
-
 
 ssize_t oneClientLoop(int sockTransServer, TRequeteOp req){
   ssize_t err;
@@ -126,10 +135,79 @@ ssize_t oneClientLoop(int sockTransServer, TRequeteOp req){
   return 0;
 }
 
-ssize_t multiClientIterativeLoop(int sockTransServer, TRequeteOp req){
+ssize_t multiClientIterativeLoop(struct sockaddr_in addClient, TRequeteOp req){
+  fd_set readSet;
 
+  FD_ZERO(&readSet);
+  FD_SET(sockConx,&readSet);
+  int nfsd = FD_SETSIZE;
+
+  int client[MAXCLIENT];
+  int nbOfClient = 0;
+  int indexOfClient = 0;
+
+  TResponse response;
+  ssize_t err;
+
+  int sizeAddr = sizeof(struct sockaddr_in);
+
+
+  if(err < 0) {
+    perror("(serveurSelect) erreur dans select");
+    shutdown(SHUT_RDWR,sockConx);
+    close(sockConx);
+    return -5;
+  }
+  while(1){
+    err = select(nfsd,&readSet,NULL,NULL,NULL);
+    if(FD_ISSET(sockConx,&readSet)){
+      //accept new client
+      client[nbOfClient] = accept(sockConx, (struct sockaddr *) &addClient, (socklen_t *) &sizeAddr);
+      if (client[nbOfClient] < 0) {
+        perror("(serveurTCP) erreur sur accept");
+        return -5;
+      } else {
+        printf("Connexion of new client\n");
+        FD_SET(client[nbOfClient],&readSet);
+        nbOfClient++;
+      }
+    }
+    while(indexOfClient < nbOfClient){
+      printf("While %d < %d\n",indexOfClient,nbOfClient);
+      if(FD_ISSET(client[indexOfClient],&readSet)){
+        err = recv(client[indexOfClient], &req, sizeof(TRequeteOp), 0);
+        if (err < 0) {
+          perror("(serveurTCP) erreur dans la reception");
+          shutdown(client[indexOfClient], SHUT_RDWR);
+          close(client[indexOfClient]);
+          return -6;
+        }
+        printf("Received new request\n");
+
+        doRequest(req,&response);
+
+        // Sending Math Answer
+        err = send(client[indexOfClient], &response, sizeof(TResponse), 0);
+        printf("sended\n");
+        if (err < 0) {
+          perror("(serverTCP) error on the send");
+          shutdown(client[indexOfClient], SHUT_RDWR);
+          close(client[indexOfClient]);//shtdwn + close all
+          memmove((void*)(&client[indexOfClient]), (void*)(&client[indexOfClient+1]), (nbOfClient-indexOfClient)*sizeof(int));
+          return -5;
+        }
+        if(response.codeErr==OP_END){
+          shutdown(client[indexOfClient], SHUT_RDWR);
+          close(client[indexOfClient]);
+          memmove((void*)(&client[indexOfClient]), (void*)(&client[indexOfClient+1]), (nbOfClient-indexOfClient)*sizeof(int));
+          nbOfClient--;
+        }
+      }
+      indexOfClient++;
+    }
+    indexOfClient = 0;
+  }
 }
-
 
 ssize_t doRequest(TRequeteOp req, TResponse *response){
   // Processing Request

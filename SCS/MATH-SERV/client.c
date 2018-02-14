@@ -22,6 +22,9 @@ int main(int argc, char* argv[]) {
   isValidIpAddress(ipAddress);
 
   sockTransClient = socketClient(ipAddress,distantPort);
+  if(sockTransClient < 0){
+    return sockTransClient;
+  }
   int i = 0;
   while(i < 5){
     req.codeReq = OP_ADD + i;
@@ -42,11 +45,17 @@ int main(int argc, char* argv[]) {
         printf("Envoi de l'opération %d / %d\n", req.op1, req.op2);
         break;
       case OP_END:
-        printf("End\n");
+        printf("Want to end it\n");
       default:assert(true);
     }
     //endtest
     err = doRequest(req, sockTransClient, response);
+    if(err == 1){
+      shutdown(sockTransClient, SHUT_RDWR);
+      close(sockTransClient);
+      printf("Disconnected\n");
+      return 0;
+    }
     if(err < 0) {
       perror("(clientTCP) erreur dans la reception");
       shutdown(sockTransClient, SHUT_RDWR);
@@ -95,6 +104,7 @@ ssize_t doRequest(TRequeteOp req, int sockTransClient, TResponse response){
       }
       break;
     case OP_END:
+      printf("Closing up\n");
       return 1;
     default:assert(true);
 
